@@ -964,6 +964,47 @@ using namespace std;
 
 
 
+//#include <fstream>
+//#include <iostream>
+//#include <string>
+//#include <stdio.h>
+//#include <vector>
+//using namespace std;
+//int main() 
+//{
+//    string fileName;
+//    string name;
+//    cout << "Enter file name(with .txt): " << endl;
+//    cin >> fileName;
+//    ofstream file;
+//    file.open(fileName, ios::app);
+//    cout << "Enter your name" << endl;
+//    cin >> name;
+//    file << name << endl;
+//    cout << "Enter your surname" << endl;
+//    cin >> name;
+//    file << name << endl;
+//    cout << "Enter your age" << endl;
+//    cin >> name;
+//    file << name << endl;
+//    file.close();
+//    int status;
+//    char filename[20];
+//    cout << "enter file name to delete: " << endl;
+//    cin >> filename;
+//    status = remove(filename);
+//    if (status == 0)
+//    {
+//        cout << "file deleted successfully!" << endl;
+//    }
+//    else
+//    {
+//        cout << "error occurred" << endl;
+//    }
+//}
+
+
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -972,33 +1013,44 @@ using namespace std;
 using namespace std;
 int main() 
 {
-    string fileName;
-    string name;
-    cout << "Enter file name(with .txt): " << endl;
-    cin >> fileName;
+    vector <int> nums{};
+    int answ;
+    cout << "Enter numbers(type -156 for exit)" << endl;
+    do
+    {
+        cin >> answ;
+        nums.push_back(answ);
+    } while (answ != -156);
+    int i = 0;
+    do
+    {
+        cout << nums[i] <<endl;
+        i-=-1;
+    } while (i<nums.size()-1);
+    int index;
+    string answ2;
+    cout << "If you want to save all numbers (type all), or one(type one)" << endl;
+    if (answ2=="one")
+    {
+    cout << "Enter number index that will be saved in file" << endl;
+    cin >> index;
+    index = index - 1;
     ofstream file;
-    file.open(fileName, ios::app);
-    cout << "Enter your name" << endl;
-    cin >> name;
-    file << name << endl;
-    cout << "Enter your surname" << endl;
-    cin >> name;
-    file << name << endl;
-    cout << "Enter your age" << endl;
-    cin >> name;
-    file << name << endl;
+    file.open("info.txt", ios::app);
+    file << nums[index];
     file.close();
-    int status;
-    char filename[20];
-    cout << "enter file name to delete: " << endl;
-    cin >> filename;
-    status = remove(filename);
-    if (status == 0)
-    {
-        cout << "file deleted successfully!" << endl;
     }
-    else
+    if (answ2=="all")
     {
-        cout << "error occurred" << endl;
+        int ii = 0;
+        ofstream file;
+        do
+        {
+            file.open("info.txt", ios::app);
+            file << nums[ii] << endl;
+            file.close();
+            ii -= -1;
+        } while (ii<nums.size()-1);
     }
+    return 34;
 }
